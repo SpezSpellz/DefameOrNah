@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Primary Data Word Cloud</title>
+    <style>
+        html, body, svg {
+            margin: 0;
+            height: 100%;
+        }
+        ul.navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        .navbar li {
+            float: left;
+        }
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar li a:hover {
+            background-color: #111;
+        }
+        .navbar li a[selected] {
+            background-color: #0A0;
+        }
+    </style>
+</head>
+<body>
+    <ul class="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a selected>Word Cloud</a></li>
+        <li><a href="/messagelengths">Message Lengths</a></li>
+        <li><a href="/faq">FAQ</a></li>
+    </ul>
+    <svg id="demo1" style="margin-top: 46px; height: calc(100% - 46px)" width="100%"></svg>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+    <script>
+        fetch("/api/v1/word_frequencies").then(res => res.json()).then(data => {
+            function draw(words) {
+                d3.select("#demo1")
+                    .append("g")
+                    .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                    .selectAll("text")
+                    .data(words)
+                    .enter()
+                    .append("text")
+                    .text((d) => d.text)
+                    .style("font-size", (d) => d.size + "px")
+                    .style("font-family", (d) => d.font)
+                    .attr("text-anchor", "middle")
+                    .attr("transform", (d) => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")");
+            }
+            const layout = d3.layout.cloud()
+                .size([window.demo1.clientWidth, window.demo1.clientHeight])
+                .words(data)
+                .font("Impact")
+                .padding(5)
+                .rotate(function() { return ~~(Math.random() * 2) * 90; })
+                .on("end", draw);
+            layout.start();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+fastapi-codegen --input ./openapi/api.yml --output stub --output-model-type pydantic_v2.BaseModel --template-dir templates

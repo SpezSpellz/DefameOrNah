@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Message lengths of primary data</title>
+    <style>
+        html, body, svg {
+            margin: 0;
+            height: 100%;
+        }
+        ul.navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        .navbar li {
+            float: left;
+        }
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar li a:hover {
+            background-color: #111;
+        }
+        .navbar li a[selected] {
+            background-color: #0A0;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <ul class="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/wordcloud">Word Cloud</a></li>
+        <li><a selected>Message Lengths</a></li>
+        <li><a href="/faq">FAQ</a></li>
+    </ul>
+    <div id="chart" style="margin-top: 46px; height: calc(100% - 46px);width: 100%"></div>
+    <script>
+        const chart = document.getElementById('chart');
+        fetch("/api/v1/message_lengths_frequency/100/").then(res => res.json()).then(data => {
+            Plotly.newPlot(chart, [
+                {
+                    x: data.map(x => x.length),
+                    y: data.map(y => y.frequency),
+                    type: 'bar'
+                }
+            ], {
+                title: {
+                    text: 'Frequency of Different Message Length'
+                },
+                xaxis: {
+                    title: {
+                        text: 'Message Length'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Frequency'
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

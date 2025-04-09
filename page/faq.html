@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        ul.navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        .navbar li {
+            float: left;
+        }
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar li a:hover {
+            background-color: #111;
+        }
+        .navbar li a[selected] {
+            background-color: #0A0;
+        }
+    </style>
+</head>
+<body>
+    <ul class="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/wordcloud">Word Cloud</a></li>
+        <li><a href="/messagelengths">Message Lengths</a></li>
+        <li><a selected>FAQ</a></li>
+    </ul><br>
+    <h1>What is defamation?</h1>
+    <h3>Defamation is the act of injuring another's reputation by any slanderous communication, written or oral; the wrong of maliciously injuring the good name of another; slander; detraction; calumny; aspersion.</h3>
+    <h1>If the tool detected that the message is defamation, will it 100% hold up in court?</h1>
+    <h3>No, our tool is not 100% accurate and it relies on some assumptions:</h3>
+    <ol>
+        <li>The statement is false and untrue.</li>
+        <li>The statement affects your reputation.</li>
+        <li>The statement is announced publically.</li>
+    </ol>
+    <h1>On which laws do we consider a statement defamation?</h1>
+    <h3>We consider a statement defamation based on Thai's laws</h3>
+    <h1>Here is the list of some phrases and their coresponding the Thai supreme court sentences (From Secondary Data)</h1>
+    <h2>Phrases that contains <strong>Defamation</strong></h2>
+    <ol>
+        <li>
+            <h3>เอาทนายเฮงซวยที่ไหนมา สถุล (คำพิพากษาศาลฎีกาที่ 3920/2562)</h3>
+            ข้อความที่จำเลยกล่าวจะเป็นความผิดฐานหมิ่นประมาทหรือไม่ ต้องพิจารณาถึงความรู้สึกของวิญญูชนทั่วๆไป เป็นเกณฑ์ในการพิจารณาว่าข้อความที่กล่าวถึงนั้นถึงขั้นที่ทำให้ผู้ถูกหมิ่นประมาทซึ่งเป็นทนายความน่าจะเสียชื่อเสียง บุคคลอื่นดูหมิ่น เกลียดชังหรือไม่ มิใช่พิจารณาตามความรู้สึกของผู้ถูกหมิ่นประมาทแต่ฝ่ายเดียว ถ้อยคำที่จำเลยกล่าวว่า “เอาทนายเฮงซวยที่ไหนมา สถุล” นั้น พจนานุกรมฉบับราชบัณฑิตยสถาน พ.ศ.2554 ให้ความหมายของคำว่า “เฮงซวย” ว่า เอาแน่นอนอะไรไม่ได้ คุณภาพต่ำ ไม่ดี เช่น คนเฮงซวย ของเฮงซวย เรื่องเฮงซวย ส่วนคำว่า “สถุล” ให้ความหมายว่า หยาบ ต่ำช้า เลวทราม (ใช้เป็นคำด่า) เช่น เลวสถุล เช่นนี้ แม้ถ้อยคำที่จำเลยด่าโดยการกล่าวว่าทนายเฮงซวย เป็นเพียงการดูถูกเหยียดหยามและสบประมาทโจทก์ อันเป็นการพูดดูหมิ่นเหยียดหยามให้อับอายเจ็บใจ แต่ยังไม่เป็นการใส่ความให้เสียชื่อเสียง ถูกดูหมิ่นหรือถูกเกลียดชังก็ตาม แต่เมื่อฟังประกอบกับถ้อยคำตอนท้ายว่า “สถุล” แล้ว วิญญูชนทั่วไปจึงอาจเข้าใจว่า โจทก์ซึ่งเป็นทนายความเอาแน่นอนอะไรไม่ได้ คุณภาพต่ำ ไม่ดีและเป็นไปในทางหยาบ ต่ำช้า เลวทราม ถ้อยคำดังกล่าวจึงอาจทำให้โจทก์เสียชื่อเสียง ถูกดูหมิ่นหรือถูกเกลียดชัง อันอาจเป็นความผิดฐานหมิ่นประมาทได้
+        </li>
+    </ol>
+    <h2>Phrases do not contain <strong>Defamation</strong></h2>
+    <ol>
+        <li>
+            <h3>พี่สาวเองมีผัวหรือยังควยกูนี่ใหญ่นะพี่สาวมึงคงชอบขอเย็ดสักทีสองทีได้ไหม (คำพิพากษาศาลฎีกาที่ 1399/2518)</h3>
+            ที่จะเป็นความผิดฐานหมิ่นประมาทตามประมวลกฎหมายอาญา มาตรา326 นั้น จะต้องเป็นการใส่ความผู้อื่นโดยยืนยันข้อเท็จจริงที่ใส่ความนั้นต่อบุคคลที่สาม มิใช่เพียงเป็นการแสดงความคิดเห็นหรือคาดคะเน และการใส่ความดังกล่าวนั้นน่าจะทำให้ผู้อื่นที่ถูกใส่ความเสียชื่อเสียงถูกดูหมิ่นหรือถูกเกลียดชังด้วย
+            จำเลยกล่าวต่อน้องชายของผู้เสียหายและบุคคลอื่นว่า "พี่สาวเองมีผัวหรือยังควยกูนี่ใหญ่นะพี่สาวมึงคงชอบขอเย็ดสักทีสองทีได้ไหม" คำกล่าวที่ว่า "ควยกูนี่ใหญ่นะพี่สาวมึงคงชอบ" เป็นเพียงการแสดงความคิดเห็นหรือคาดคะเนของจำเลยเท่านั้น มิได้ยืนยันข้อเท็จจริงอันน่าจะทำให้ผู้เสียหายเสียชื่อเสียงหรือถูกดูหมิ่นหรือถูกเกลียดชังส่วนคำกล่าวที่ว่า"ขอเย็ดสักทีสองทีได้ไหม" ก็มิใช่ถ้อยคำที่น่าจะทำให้ผู้เสียหายเสียชื่อเสียง ถูกดูหมิ่นหรือถูกเกลียดชังแต่อย่างใด จึงไม่เป็นความผิดฐานหมิ่นประมาทตามประมวลกฎหมายอาญา มาตรา 326
+        </li>
+    </ol>
+</body>
+</html>

@@ -1,0 +1,131 @@
+openapi: 3.0.4
+info:
+  title: Defame Or Nah - OpenAPI 3.0
+  description: |-
+    This is a simple API for DefameOrNah
+  version: 0.0.1
+servers:
+  - url: https://defameornah.bot.nu/api/v1
+tags:
+  - name: Inference
+    description: Prediction
+  - name: Visualization
+    description: Access data for visualization
+paths:
+  /check_message/{message}:
+    get:
+      tags:
+        - Inference
+      summary: Check whether a message is defamation.
+      description: Check whether a message is defamation.
+      operationId: check_message
+      parameters:
+        - name: message
+          in: path
+          description: message that will be checked
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefamationInferenceResponse'
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /word_frequencies:
+    get:
+      tags:
+        - Inference
+      summary: Return frequency of words in primary data.
+      description: Return frequency of words in primary data.
+      operationId: word_frequencies
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WordFrequencyEntry'
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /message_lengths_frequency/{max_length}:
+    get:
+      tags:
+        - Inference
+      summary: Get unique message lengths frequencies
+      description: Get unique message lengths frequencies.
+      operationId: message_lengths_frequency
+      parameters:
+        - name: max_length
+          in: path
+          description: maximum length that will be queried
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MessageLengthFrequencyEntry"
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    DefamationInferenceResponse:
+      type: object
+      properties:
+        defamation:
+          type: boolean
+    WordFrequencyEntry:
+      type: object
+      properties:
+        text:
+          type: string
+          example: test
+        value:
+          type: integer
+          example: 55
+    MessageLengthFrequencyEntry:
+      type: object
+      properties:
+        length:
+          type: integer
+          example: 10
+        frequency:
+          type: integer
+          example: 10
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
