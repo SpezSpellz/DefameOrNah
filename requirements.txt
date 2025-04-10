@@ -5,3 +5,4 @@ pandas==2.2.3
 pydantic==2.11.1
 fastapi-code-generator
 scikit-learn
+python-decouple

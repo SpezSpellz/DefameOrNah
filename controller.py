@@ -1,9 +1,10 @@
 import joblib
 from ollama import AsyncClient
 import pandas as pd
+from decouple import config
 
-model = joblib.load("../analytics/random_forest.joblib")
-data_combined = pd.read_csv("../analytics/data_combined.csv")
+model = joblib.load(config("MODEL_PATH", default="../analytics/random_forest.joblib"))
+data_combined = pd.read_csv(config("DATA_PATH", default="../analytics/data_combined.csv"))
 message_log = open("messages.txt", "a", encoding="UTF-8")
 
 from stub.models import (
