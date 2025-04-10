@@ -4,7 +4,7 @@ import pandas as pd
 
 model = joblib.load("../analytics/random_forest.joblib")
 data_combined = pd.read_csv("../analytics/data_combined.csv")
-message_log = open("messages.txt", "a")
+message_log = open("messages.txt", "a", encoding="UTF-8")
 
 from stub.models import (
     DefamationInferenceResponse,
@@ -34,7 +34,7 @@ async def word_frequencies() -> WordFrequenciesGetResponse:
 async def message_lengths_frequency(max_length: int) -> MessageLengthsFrequencyMaxLengthGetResponse:
     """Retrieve word lengths"""
     response = list()
-    lengths = data_combined["Message"].map(len)
+    lengths = data_combined["Message"].str.len()
     for i in range(1, 1 + max_length):
         response.append(MessageLengthFrequencyEntry(length=i, frequency=sum(lengths == i)))
     return MessageLengthsFrequencyMaxLengthGetResponse(response)
