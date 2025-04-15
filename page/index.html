@@ -161,14 +161,14 @@
             input.disabled = true;
             submitBtn.disabled = true;
             resultDiv.textContent = `Checking if \`${input}\` is defamation...`;
-            fetch(`/api/v1/check_message/${encodeURIComponent(input)}/`).then(res => res.json().then(res => {
+            fetch(`/api/v1/check_message/${encodeURIComponent(input)}/`).then(res => res.ok ? res.json() : res.json().then(val => Promise.reject(val.detail))).then(res => {
                 input.disabled = false;
                 submitBtn.disabled = false;
                 resultDiv.textContent = `\`${input}\` ${res.defamation ? "contains" : "does not contain"} defamation.`;
-            })).catch(() => {
+            }).catch(err => {
                 input.disabled = false;
                 submitBtn.disabled = false;
-                resultDiv.textContent = `Failed to determine.`;
+                resultDiv.textContent = err;
             });
         }
     </script>
