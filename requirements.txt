@@ -6,3 +6,4 @@ pydantic==2.11.1
 fastapi-code-generator
 scikit-learn
 python-decouple
+selenium
