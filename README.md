@@ -35,3 +35,21 @@ of defamation.
 
 1. User-friendly interface for inputting messages.
 2. Natural language processing (NLP) algorithms to analyze message sentiment and identify potential defamation.
+
+# Quick start
+### Using Docker
+```sh
+$ docker build -t defameornah .
+$ docker run --name defameornah -p 8000:8000 -d defameornah
+```
+You can now visit via localhost:8000  
+### Manually
+1. Install Ollama  
+2. Pull bge-m3 model using ollama  
+3. Clone this repo
+4. Create or activate virtual environment (optional)
+5. `pip install -r requirements.txt`
+6. Generate stub: `fastapi-codegen --input .openapi/api.yml --output ./stub --output-model-type pydantic_v2.BaseModel --template-dir ./templates`
+7. Run: `fastapi run main.py`
+
+You can now visit via localhost:8000  
